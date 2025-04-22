@@ -31,7 +31,7 @@ def check_bound(rct: pg.Rect) -> tuple[bool, bool]:
      return yoko, tate
 
  #GameOver
-def gameover(screen: pg.Surface) -> None:
+def gameover(screen: pg.Surface) -> None: #こうかとんがやられたときにGameOver
     black_surface = pg.Surface((WIDTH, HEIGHT))
     pg.draw.rect(black_surface,(0,0,0),pg.Rect(0,0,WIDTH,HEIGHT))
     black_surface.set_alpha(126)
@@ -57,6 +57,7 @@ def main():
     kk_img = pg.transform.rotozoom(pg.image.load("fig/3.png"), 0, 0.9)
     kk_rct = kk_img.get_rect()
     kk_rct.center = 300, 200
+
     #爆弾初期化
     bb_img = pg.Surface((20, 20))
     pg.draw.circle(bb_img, (255, 0, 0), (10, 10), 10)
@@ -98,6 +99,7 @@ def main():
         #     sum_mv[0] -= 5
         # if key_lst[pg.K_RIGHT]:
         #     sum_mv[0] += 5
+
         kk_rct.move_ip(sum_mv)
         if check_bound(kk_rct) != (True, True): # 画面外だったら
             kk_rct.move_ip(-sum_mv[0], -sum_mv[1]) # 画面内に戻す
